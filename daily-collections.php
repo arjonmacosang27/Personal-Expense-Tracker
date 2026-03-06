@@ -4,24 +4,6 @@
 // Add the same database connection logic here at the very top
 $con = mysqli_connect("localhost", "root", "", "dailyexpense"); 
 ?>
-// DEBUGGER START
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-if (!$con) {
-    die("CONNECTION ERROR: " . mysqli_connect_error());
-} else {
-    echo "<div class='alert alert-info'>Connected to database successfully!</div>";
-}
-
-$check_table = mysqli_query($con, "SELECT COUNT(*) as total FROM tblcollections");
-if (!$check_table) {
-    echo "<div class='alert alert-danger'>TABLE ERROR: tblcollections does not exist in this database.</div>";
-} else {
-    $data = mysqli_fetch_assoc($check_table);
-    echo "<div class='alert alert-warning'>Rows found in table: " . $data['total'] . "</div>";
-}
-// DEBUGGER END
 <div class="container">
     <p style="margin-top:20px;">
         <a href="add-collection.php" class="btn btn-info"> + Add New Entry</a>

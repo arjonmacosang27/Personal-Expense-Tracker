@@ -1,30 +1,30 @@
 <?php
-// DATABASE CONNECTION (Replacing the need for an include file)
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db   = "dailyexpense"; // Change this to your actual database name
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-$con = mysqli_connect($host, $user, $pass, $db);
+// Use the central connection pointing to 'dailyexpense'
+include('includes/dbconnection.php');
 
-if(mysqli_connect_errno()){
-    echo "Connection Fail: " . mysqli_connect_error();
-}
+if (strlen($_SESSION['detsuid']==0)) {
+    header('location:logout.php');
+} else {
+    if(isset($_POST['submit'])) {
+        $userid = $_SESSION['detsuid'];
+        $receiptno = $_POST['receiptno'];
+        $category = $_POST['category'];
+        $amount = $_POST['amount'];
+        $collectiondate = $_POST['collectiondate'];
 
-// FORM PROCESSING LOGIC
-$msg = "";
-if(isset($_POST['submit'])) {
-    $receiptno = $_POST['receiptno'];
-    $category  = $_POST['category'];
-    $amount    = $_POST['amount'];
-    $colldate  = $_POST['colldate'];
+        // Insert into the 'dailyexpense' database table
+        $query = mysqli_query($con, "insert into tblcollections(UserId, ReceiptNo, Category, Amount, CollectionDate) value('$userid', '$receiptno', '$category', '$amount', '$collectiondate')");
 
-    $query = mysqli_query($con, "INSERT INTO tblcollections(ReceiptNo, Category, Amount, CollectionDate) 
-                                 VALUES('$receiptno', '$category', '$amount', '$colldate')");
-    if($query) {
-        $msg = "<div class='alert alert-success'>Collection has been added successfully!</div>";
-    } else {
-        $msg = "<div class='alert alert-danger'>Something went wrong. Please try again.</div>";
+        if($query) {
+            echo "<script>alert('Collection has been added successfully!');</script>";
+            echo "<script>window.location.href='daily-collections.php'</script>";
+        } else {
+            echo "<script>alert('Something went wrong. Please try again.');</script>";
+        }
     }
 }
 ?>

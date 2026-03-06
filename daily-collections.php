@@ -1,22 +1,15 @@
-
-
 <?php
-// Add the same database connection logic here at the very top
-$con = mysqli_connect("localhost", "root", "", "dailyexpense"); 
-?>
-<div class="container">
-    <p style="margin-top:20px;">
-        <a href="add-collection.php" class="btn btn-info"> + Add New Entry</a>
-    </p>
-    
-    <?php
 session_start();
-error_reporting(0);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// This now points to 'dailyexpense' via the include
 include('includes/dbconnection.php');
 
 if (strlen($_SESSION['detsuid']==0)) {
   header('location:logout.php');
 } else {
+// Rest of your HTML/PHP code...
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,24 +53,24 @@ if (strlen($_SESSION['detsuid']==0)) {
                             <tbody>
                                 <?php
                                 $userid=$_SESSION['detsuid'];
-                                $ret=mysqli_query($con,"SELECT * FROM tblcollections ORDER BY CollectionDate DESC");
-                                $cnt=1;
+                                // Using the single $con connection
+                                $ret=mysqli_query($con, "SELECT * FROM tblcollections WHERE UserId='$userid' ORDER BY CollectionDate DESC");
                                 $total_income = 0;
                                 while ($row=mysqli_fetch_array($ret)) {
                                     $total_income += $row['Amount'];
                                 ?>
-                                <tr>
-                                    <td><?php echo $row['ReceiptNo'];?></td>
-                                    <td><?php echo $row['Category'];?></td>
-                                   <td>₱<?php echo number_format($row['Amount'], 2); ?></td>
-                                    <td><?php echo $row['CollectionDate'];?></td>
-                                </tr>
+                                    <tr>
+                                        <td><?php echo $row['ReceiptNo'];?></td>
+                                        <td><?php echo $row['Category'];?></td>
+                                        <td>₱<?php echo number_format($row['Amount'], 2);?></td>
+                                        <td><?php echo $row['CollectionDate'];?></td>
+                                    </tr>
                                 <?php } ?>
-                                <tr style="font-weight: bold; background: #eee;">
-                                    <td colspan="2" align="right">TOTAL COLLECTIONS:</td>
-                                   <td colspan="2">₱<?php echo number_format($total_income, 2); ?></td>
-                                </tr>
-                            </tbody>
+                                    <tr style="font-weight: bold; background: #eee;">
+                                        <td colspan="2" align="right">TOTAL COLLECTIONS:</td>
+                                        <td colspan="2">₱<?php echo number_format($total_income, 2);?></td>
+                                    </tr>
+                                </tbody>
                         </table>
                         
                         <div class="row" style="margin-top: 50px;">

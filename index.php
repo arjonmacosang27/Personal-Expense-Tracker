@@ -163,7 +163,7 @@ $total_expense_amount = '0' + mysqli_fetch_assoc($total_expense)['SUM(expense)']
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Today's Expense</h5>
-          <p class="card-text">₹<?php echo $today_expense_amount; ?></p>
+          <p class="card-text">₱<?php echo $today_expense_amount; ?></p>
         </div>
       </div>
     </div>
@@ -171,7 +171,7 @@ $total_expense_amount = '0' + mysqli_fetch_assoc($total_expense)['SUM(expense)']
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Yesterday's Expense</h5>
-          <p class="card-text">₹<?php echo $yesterday_expense_amount; ?></p>
+          <p class="card-text">₱<?php echo $yesterday_expense_amount; ?></p>
         </div>
       </div>
     </div>
@@ -179,7 +179,7 @@ $total_expense_amount = '0' + mysqli_fetch_assoc($total_expense)['SUM(expense)']
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Last 7Day's Expense</h5>
-          <p class="card-text">₹<?php echo $this_week_expense_amount; ?></p>
+          <p class="card-text">₱<?php echo $this_week_expense_amount; ?></p>
         </div>
       </div>
     </div>
@@ -187,7 +187,7 @@ $total_expense_amount = '0' + mysqli_fetch_assoc($total_expense)['SUM(expense)']
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Last 30Day's Expense</h5>
-          <p class="card-text">₹<?php echo $this_month_expense_amount; ?></p>
+          <p class="card-text">₱<?php echo $this_month_expense_amount; ?></p>
         </div>
       </div>
     </div>
@@ -195,7 +195,7 @@ $total_expense_amount = '0' + mysqli_fetch_assoc($total_expense)['SUM(expense)']
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Current Year Expense</h5>
-          <p class="card-text">₹<?php echo $this_year_expense_amount; ?></p>
+          <p class="card-text">₱<?php echo $this_year_expense_amount; ?></p>
         </div>
       </div>
     </div>
@@ -203,7 +203,7 @@ $total_expense_amount = '0' + mysqli_fetch_assoc($total_expense)['SUM(expense)']
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Total Expense</h5>
-          <p class="card-text">₹<?php echo $total_expense_amount; ?></p>
+          <p class="card-text">₱<?php echo $total_expense_amount; ?></p>
         </div>
       </div>
     </div>

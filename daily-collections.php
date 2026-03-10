@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // This now points to 'dailyexpense' via the include
-include('includes/dbconnection.php');
+include('includes/config.php');
 
 if (strlen($_SESSION['detsuid']==0)) {
   header('location:logout.php');
@@ -62,13 +62,13 @@ if (strlen($_SESSION['detsuid']==0)) {
                                     <tr>
                                         <td><?php echo $row['ReceiptNo'];?></td>
                                         <td><?php echo $row['Category'];?></td>
-                                        <td>₱<?php echo number_format($row['Amount'], 2);?></td>
+                                        <td>₱<?php echo number_format($row['Amount'], 2); ?></td>.
                                         <td><?php echo $row['CollectionDate'];?></td>
                                     </tr>
                                 <?php } ?>
                                     <tr style="font-weight: bold; background: #eee;">
                                         <td colspan="2" align="right">TOTAL COLLECTIONS:</td>
-                                        <td colspan="2">₱<?php echo number_format($total_income, 2);?></td>
+                                        <td colspan="2">₱<?php echo number_format($total_income, 2); ?></td>.
                                     </tr>
                                 </tbody>
                         </table>
